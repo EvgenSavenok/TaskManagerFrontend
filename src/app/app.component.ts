@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {TaskComponent} from './components/task.component';
+import {TaskListComponent} from './components/task-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [TaskComponent],
+  imports: [TaskListComponent, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'TaskManagerFrontend';
+  title = 'TaskManager';
 }
