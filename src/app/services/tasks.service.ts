@@ -16,7 +16,7 @@ export class TasksService {
   }
 
   getTaskById(id: string): Observable<TaskDto> {
-    return this.http.get<TaskDto>(`${this.baseUrl}/tasks/${id}`);
+    return this.http.get<TaskDto>(`${this.baseUrl}/tasks/getTaskById/${id}`);
   }
 
   createTask(task: TaskDto): Observable<TaskDto> {
