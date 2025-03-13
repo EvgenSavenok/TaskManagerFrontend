@@ -1,0 +1,11 @@
+﻿<div>
+  <h1>Task Management</h1>
+
+  <button (click)="updateTask()">Update Task</button>
+
+  <ul>
+    <li *ngFor="let task of tasks">
+      {{ task.Title }} - {{ task.Description }}
+    </li>
+  </ul>
+</div>
