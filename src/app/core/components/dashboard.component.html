@@ -1,0 +1,17 @@
+﻿<div *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</div>
+
+<button (click)="logout()" class="logout-button">Выход</button>
+
+<div *ngIf="role === 'Administrator'">
+  <app-get-all-users [users]="users"></app-get-all-users>
+</div>
+
+<div *ngIf="role === 'User'">
+  <app-task-list [tasks]="tasks"></app-task-list>
+</div>
+
+<div *ngIf="role !== 'Administrator' && role !== 'User'">
+  <p>Ошибка: роль не определена. Вы не авторизованы.</p>
+</div>

@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder, HttpTransportType } from '@microsoft/signalr';
-import {TaskDto} from '../models/task.model';
+import {TaskDto} from '../moduls/task.model';
 
 @Injectable({
   providedIn: 'root'
