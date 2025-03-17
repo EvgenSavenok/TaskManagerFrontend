@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {TaskListComponent} from './features/tasks/components/task-list.component';
-import {UsersModule} from './features/users/moduls/users.module';
-import {RegisterComponent} from './features/users/components/register/register.component';
+import {TaskListComponent} from './components/task-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [UsersModule, RouterOutlet],
+  imports: [TaskListComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
