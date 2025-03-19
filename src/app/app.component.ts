@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {TaskListComponent} from './features/tasks/components/task-list.component';
+import {TaskListComponent} from './features/tasks/components/tasksList/task-list.component';
 import {UsersModule} from './features/users/moduls/users.module';
 import {RegisterComponent} from './features/users/components/register/register.component';
 

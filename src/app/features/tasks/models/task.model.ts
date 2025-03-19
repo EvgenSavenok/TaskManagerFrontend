@@ -18,8 +18,10 @@ export interface TaskDto {
   priority: number;
   deadline: Date;
   minutesBeforeDeadline: number;
-  userTimeZone: string;
+  userTimeZone: number;
   userEmail: string;
   taskTags: TagDto[];
   taskComments: CommentDto[];
+
+  [key: string]: any;
 }

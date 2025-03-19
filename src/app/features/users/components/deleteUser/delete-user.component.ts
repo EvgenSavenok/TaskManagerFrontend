@@ -1,4 +1,4 @@
-﻿import { Component, Input } from '@angular/core';
+﻿import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import {NgIf} from '@angular/common';
 
@@ -12,6 +12,7 @@ import {NgIf} from '@angular/common';
 })
 export class DeleteUserComponent {
   @Input() userId: string = '';
+  @Output() userDeleted = new EventEmitter<void>();
   errorMessage: string | null = null;
 
   constructor(private usersService: UsersService) {}
@@ -22,9 +23,15 @@ export class DeleteUserComponent {
       return;
     }
 
+    const isConfirmed = confirm('Вы уверены, что хотите удалить этого пользователя?');
+
+    if (!isConfirmed) {
+      return;
+    }
+
     this.usersService.deleteUser(this.userId).subscribe(
       () => {
-        alert('Пользователь успешно удален');
+          this.userDeleted.emit();
       },
       (error) => {
         this.errorMessage = 'Ошибка при удалении пользователя: ' + error.message;

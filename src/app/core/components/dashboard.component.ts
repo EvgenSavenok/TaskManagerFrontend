@@ -3,9 +3,10 @@ import { UsersService } from '../../features/users/services/users.service';
 import { AuthService } from '../services/auth.service';
 import { TasksService } from '../../features/tasks/services/tasks.service';
 import { NgIf } from '@angular/common';
-import { TaskListComponent } from '../../features/tasks/components/task-list.component';
+import { TaskListComponent } from '../../features/tasks/components/tasksList/task-list.component';
 import { GetAllUsersComponent } from '../../features/users/components/usersList/get-all-users.component';
 import {Router} from '@angular/router';
+import {LogoutComponent} from '../../features/users/components/logout/logout.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,8 @@ import {Router} from '@angular/router';
   imports: [
     NgIf,
     TaskListComponent,
-    GetAllUsersComponent
+    GetAllUsersComponent,
+    LogoutComponent
   ],
   styleUrls: ['./dashboard.component.css']
 })
@@ -66,10 +68,5 @@ export class DashboardComponent implements OnInit {
     //     this.errorMessage = 'Ошибка при загрузке задач: ' + error.message;
     //   }
     // );
-  }
-
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
   }
 }

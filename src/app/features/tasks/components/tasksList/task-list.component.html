@@ -1,0 +1,22 @@
+﻿<div class="task-container">
+
+  <div class="task-columns">
+
+    <div class="task-column">
+      <h3>Высокий приоритет</h3>
+      <app-task-item *ngFor="let task of highPriorityTasks" [task]="task"></app-task-item>
+    </div>
+
+    <div class="task-column">
+      <h3>Средний приоритет</h3>
+      <app-task-item *ngFor="let task of mediumPriorityTasks" [task]="task"></app-task-item>
+    </div>
+
+    <div class="task-column">
+      <h3>Низкий приоритет</h3>
+      <app-task-item *ngFor="let task of lowPriorityTasks" [task]="task"></app-task-item>
+    </div>
+
+  </div>
+
+</div>

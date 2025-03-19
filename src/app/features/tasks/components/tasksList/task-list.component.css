@@ -1,0 +1,31 @@
+﻿.task-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.task-columns {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.task-column {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  min-height: 300px;
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+app-task-item {
+  display: block;
+  margin: 10px 0;
+}

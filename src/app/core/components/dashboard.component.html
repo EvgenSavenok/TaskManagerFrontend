@@ -2,7 +2,7 @@
   {{ errorMessage }}
 </div>
 
-<button (click)="logout()" class="logout-button">Выход</button>
+<div><app-logout></app-logout></div>
 
 <div *ngIf="role === 'Administrator'">
   <app-get-all-users [users]="users"></app-get-all-users>

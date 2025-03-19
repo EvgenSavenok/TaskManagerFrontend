@@ -1,0 +1,108 @@
+﻿<div class="task-card">
+
+  <div class="delete-icon" (click)="deleteTask()">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M9 3v1H4v2h16V4h-5V3h-6zm-3 5h12v12H6V8zm3 2v8h2v-8H9zm4 0v8h2v-8h-2z"/>
+    </svg>
+
+  </div>
+
+  <div class="inner_column">
+    <div class="editable-field" (click)="editField('title')" [class.editing]="editingField === 'title'">
+
+      <p *ngIf="editingField !== 'title'">{{ task?.title }}</p>
+      <div *ngIf="editingField === 'title'" class="edit-container">
+
+        <input [(ngModel)]="editableValue" (blur)="saveEdit('title')" />
+        <div class="save-icon" (click)="saveEdit('title')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.2l-3.5-3.5-1.4 1.4 4.9 4.9 10.3-10.3-1.4-1.4z"/>
+          </svg>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="editable-field" (click)="editField('description')" [class.editing]="editingField === 'description'">
+
+      <p *ngIf="editingField !== 'description'">{{ task?.description }}</p>
+      <div *ngIf="editingField === 'description'" class="edit-container">
+
+        <input [(ngModel)]="editableValue" (blur)="saveEdit('description')" />
+        <div class="save-icon" (click)="saveEdit('description')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.2l-3.5-3.5-1.4 1.4 4.9 4.9 10.3-10.3-1.4-1.4z"/>
+          </svg>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="editable-field" (click)="editField('deadline')" [class.editing]="editingField === 'deadline'">
+
+      <p *ngIf="editingField !== 'deadline'">{{ task?.deadline | date: 'dd.MM.yyyy HH:mm' }}</p>
+      <div *ngIf="editingField === 'deadline'" class="edit-container">
+
+        <input type="datetime-local" [(ngModel)]="editableValue" (blur)="saveEdit('deadline')" />
+        <div class="save-icon" (click)="saveEdit('deadline')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.2l-3.5-3.5-1.4 1.4 4.9 4.9 10.3-10.3-1.4-1.4z"/>
+          </svg>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="editable-field" (click)="editField('category')" [class.editing]="editingField === 'category'">
+
+      <p *ngIf="editingField !== 'category'">{{ getCategoryName(task?.category) }}</p>
+      <div *ngIf="editingField === 'category'" class="edit-container">
+        <select [(ngModel)]="editableValue">
+          <option *ngFor="let key of categoryKeys" [value]="key">{{ getCategoryName(key) }}</option>
+        </select>
+
+        <div class="save-icon" (click)="saveEdit('category')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.2l-3.5-3.5-1.4 1.4 4.9 4.9 10.3-10.3-1.4-1.4z"/>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="editable-field" (click)="editField('minutesBeforeDeadline')" [class.editing]="editingField === 'minutesBeforeDeadline'">
+
+      <p *ngIf="editingField !== 'minutesBeforeDeadline'">{{ task?.minutesBeforeDeadline }}</p>
+      <div *ngIf="editingField === 'minutesBeforeDeadline'" class="edit-container">
+
+        <input [(ngModel)]="editableValue" (blur)="saveEdit('minutesBeforeDeadline')" />
+        <div class="save-icon" (click)="saveEdit('minutesBeforeDeadline')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.2l-3.5-3.5-1.4 1.4 4.9 4.9 10.3-10.3-1.4-1.4z"/>
+          </svg>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!--  <div class="tags">-->
+<!--    <span *ngFor="let tag of task.taskTags" class="tag">{{ tag.name }}</span>-->
+<!--  </div>-->
+
+<!--  <div class="comments">-->
+<!--    <h4>Комментарии:</h4>-->
+<!--    <div *ngFor="let comment of task.taskComments" class="comment">-->
+<!--      <p>{{ comment.text }}</p>-->
+<!--    </div>-->
+<!--  </div>-->
+
