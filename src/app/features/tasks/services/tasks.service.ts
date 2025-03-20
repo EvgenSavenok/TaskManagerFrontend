@@ -21,7 +21,12 @@ export class TasksService {
   }
 
   createTask(task: TaskDto): Observable<TaskDto> {
-    return this.http.post<TaskDto>(`${this.baseUrl}/tasks`, task);
+    const accessToken = localStorage.getItem('accessToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${accessToken}`
+    });
+
+    return this.http.post<TaskDto>(`${this.baseUrl}/tasks/addTask`, task, { headers });
   }
 
   updateTask(task: TaskDto): Observable<TaskDto> {
@@ -34,6 +39,11 @@ export class TasksService {
   }
 
   deleteTask(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/tasks/${id}`);
+    const accessToken = localStorage.getItem('accessToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${accessToken}`
+    });
+
+    return this.http.delete<void>(`${this.baseUrl}/tasks/deleteTask/${id}`, { headers });
   }
 }
