@@ -13,7 +13,7 @@
     <input [(ngModel)]="editedTitle" placeholder="Название" class="editing"/>
     <input [(ngModel)]="editedDescription" placeholder="Описание" class="editing"/>
 
-    <select [(ngModel)]="editedCategory" class="editing">
+    <select [(ngModel)]="editedCategory" class="editing-combo-box">
       <option *ngFor="let key of categoryKeys" [value]="key">{{ categoryMap[key] }}</option>
     </select>
 

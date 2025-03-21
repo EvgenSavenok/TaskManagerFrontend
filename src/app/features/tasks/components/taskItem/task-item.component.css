@@ -26,6 +26,7 @@
   transition: transform 0.2s;
   width: 100%;
   box-sizing: border-box;
+  margin: 15px 0 15px 0;
 }
 
 .task-card:hover {
@@ -57,3 +58,50 @@
 .delete-icon:hover {
   color: red;
 }
+
+.editing {
+  width: 86%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 12px;
+  transition: border 0.3s ease-in-out;
+}
+
+.editing-combo-box {
+  width: 92%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 12px;
+  transition: border 0.3s ease-in-out;
+}
+
+.editing:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.save-icon {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  color: green;
+  transition: color 0.3s ease-in-out;
+}
+
+.save-icon:hover {
+  color: darkgreen;
+}
+
+.task-card.edit-mode {
+  background: #f9f9f9;
+  border: 1px solid #007bff;
+}
+
