@@ -29,8 +29,8 @@ export class LoginComponent {
 
         this.router.navigateByUrl('/dashboard');
       },
-      (error) => {
-        alert('Ошибка входа: ' + error.message);
+      () => {
+        alert('Не удалось Вас авторизовать');
       }
     );
   }

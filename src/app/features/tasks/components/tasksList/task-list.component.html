@@ -1,37 +1,30 @@
 ﻿<div class="task-container">
 
   <div class="task-form-container">
-    <button class="add-task-btn" (click)="toggleAddTaskForm()">Добавить <br>задачу</button>
-
-    <div *ngIf="isAddingTask" class="add-task-form">
-      <input [(ngModel)]="newTask.title" placeholder="Название" />
-      <input [(ngModel)]="newTask.description" placeholder="Описание" />
-
-      <label>Приоритет:</label>
-      <select [(ngModel)]="newTask.priority">
-        <option [value]="1">Высокий</option>
-        <option [value]="2">Средний</option>
-        <option [value]="3">Низкий</option>
-      </select>
-
-      <label>Категория:</label>
-      <select [(ngModel)]="newTask.category">
-        <option [value]="1">Работа</option>
-        <option [value]="2">Учеба</option>
-        <option [value]="3">Спорт</option>
-        <option [value]="4">Домашние дела</option>
-      </select>
-
-      <label>Дедлайн:</label>
-      <input type="datetime-local" [(ngModel)]="newTask.deadline" />
-
-      <button (click)="addTask()">Сохранить</button>
-    </div>
-  </div>
 
   <div class="task-columns">
     <div class="task-column">
       <h3>Высокий приоритет</h3>
+      <button class="add-task-btn" (click)="toggleAddTaskForm('high')">Добавить <br>задачу</button>
+
+      <div *ngIf="isAddingHigh" class="add-task-form">
+        <input [(ngModel)]="newTask.title" placeholder="Название" />
+        <input [(ngModel)]="newTask.description" placeholder="Описание" />
+
+        <label>Категория:</label>
+        <select [(ngModel)]="newTask.category">
+          <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+        </select>
+
+        <label>Дедлайн:</label>
+        <input type="datetime-local" [(ngModel)]="newTask.deadline" />
+
+        <label>Минут до дедлайна:</label>
+        <input type="number" [(ngModel)]="newTask.minutesBeforeDeadline" min="1" />
+
+        <button (click)="addTask(1)">Сохранить</button>
+      </div>
+
       <app-task-item
         *ngFor="let task of highPriorityTasks"
         [task]="task"
@@ -42,6 +35,26 @@
 
     <div class="task-column">
       <h3>Средний приоритет</h3>
+      <button class="add-task-btn" (click)="toggleAddTaskForm('medium')">Добавить задачу</button>
+
+      <div *ngIf="isAddingMedium" class="add-task-form">
+        <input [(ngModel)]="newTask.title" placeholder="Название" />
+        <input [(ngModel)]="newTask.description" placeholder="Описание" />
+
+        <label>Категория:</label>
+        <select [(ngModel)]="newTask.category">
+          <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+        </select>
+
+        <label>Дедлайн:</label>
+        <input type="datetime-local" [(ngModel)]="newTask.deadline" />
+
+        <label>Минут до дедлайна:</label>
+        <input type="number" [(ngModel)]="newTask.minutesBeforeDeadline" min="1" />
+
+        <button (click)="addTask(2)">Сохранить</button>
+      </div>
+
       <app-task-item
         *ngFor="let task of mediumPriorityTasks"
         [task]="task"
@@ -51,12 +64,34 @@
 
     <div class="task-column">
       <h3>Низкий приоритет</h3>
+      <button class="add-task-btn" (click)="toggleAddTaskForm('low')">Добавить задачу</button>
+
+      <div *ngIf="isAddingLow" class="add-task-form">
+        <input [(ngModel)]="newTask.title" placeholder="Название" />
+        <input [(ngModel)]="newTask.description" placeholder="Описание" />
+
+        <label>Категория:</label>
+        <select [(ngModel)]="newTask.category">
+          <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+        </select>
+
+        <label>Дедлайн:</label>
+        <input type="datetime-local" [(ngModel)]="newTask.deadline" />
+
+        <label>Минут до дедлайна:</label>
+        <input type="number" [(ngModel)]="newTask.minutesBeforeDeadline" min="1" />
+
+        <button (click)="addTask(3)">Сохранить</button>
+      </div>
+
       <app-task-item
         *ngFor="let task of lowPriorityTasks"
         [task]="task"
         [refreshTasks]="getAllTasksOfUser.bind(this)">
       </app-task-item>
     </div>
+
   </div>
 
+  </div>
 </div>

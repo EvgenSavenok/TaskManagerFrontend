@@ -18,18 +18,18 @@ export class TaskListComponent implements OnInit {
   mediumPriorityTasks: TaskDto[] = [];
   lowPriorityTasks: TaskDto[] = [];
 
-  isAddingTask: boolean = false;
-  newTask: TaskDto =
-    {
-      taskId: '',
-      title: '',
-      description: '',
-      priority: 2,
-      category: 1,
-      deadline: new Date(),
-      minutesBeforeDeadline: 1,
-      userTimeZone: 'Europe/Minsk',
-    };
+  isAddingHigh = false;
+  isAddingMedium = false;
+  isAddingLow = false;
+
+  newTask: TaskDto = this.getEmptyTask();
+
+  categories = [
+    { id: 1, name: 'Работа' },
+    { id: 2, name: 'Учёба' },
+    { id: 3, name: 'Спорт' },
+    { id: 4, name: 'Домашние дела' }
+  ];
 
   constructor(private tasksService: TasksService) {}
 
@@ -50,23 +50,43 @@ export class TaskListComponent implements OnInit {
     this.lowPriorityTasks = this.tasks.filter((task) => task.priority === 3);
   }
 
-  toggleAddTaskForm() {
-    this.isAddingTask = !this.isAddingTask;
+  toggleAddTaskForm(priority: string) {
+    this.isAddingHigh = priority === 'high' ? !this.isAddingHigh : false;
+    this.isAddingMedium = priority === 'medium' ? !this.isAddingMedium : false;
+    this.isAddingLow = priority === 'low' ? !this.isAddingLow : false;
   }
 
-  addTask() {
-    const localDeadline = new Date(this.newTask.deadline);
-    this.newTask.priority = Number(this.newTask.priority);
-    this.newTask.category = Number(this.newTask.category);
-
+  addTask(priority: number) {
+    this.newTask.priority = priority;
+    this.newTask.category = (Number)(this.newTask.category);
     this.newTask.taskId = crypto.randomUUID();
 
+    const localDeadline = new Date(this.newTask.deadline);
     this.newTask.deadline = new Date(localDeadline.getTime() - localDeadline.getTimezoneOffset() * 60000);
 
     this.tasksService.createTask(this.newTask).subscribe(() => {
-      this.isAddingTask = false;
       this.getAllTasksOfUser();
+      this.newTask = this.getEmptyTask();
+      this.closeForms();
     });
   }
 
+  private closeForms() {
+    this.isAddingHigh = false;
+    this.isAddingMedium = false;
+    this.isAddingLow = false;
+  }
+
+  private getEmptyTask(): TaskDto {
+    return {
+      taskId: '',
+      title: '',
+      description: '',
+      priority: 2,
+      category: 1,
+      deadline: new Date(),
+      minutesBeforeDeadline: 1,
+      userTimeZone: 'Europe/Minsk',
+    };
+  }
 }
