@@ -1,7 +1,7 @@
-﻿<div class="task-card" *ngIf="task">
+﻿<div class="task-card" *ngIf="task" (dblclick)="enableEditing()">
   <span class="delete-icon" (click)="deleteTask()">&#10006;</span>
 
-  <div *ngIf="!isEditing" class="editable-field" (click)="enableEditing()">
+  <div *ngIf="!isEditing" class="editable-field">
     <strong>Название:</strong> {{ task.title }}<br>
     <strong>Описание:</strong> {{ task.description }}<br>
     <strong>Категория:</strong> {{ getCategoryName(task.category) }}<br>

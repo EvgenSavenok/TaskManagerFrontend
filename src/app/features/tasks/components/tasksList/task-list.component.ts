@@ -4,11 +4,19 @@ import {TasksService} from '../../services/tasks.service';
 import {TaskDto} from '../../models/task.model';
 import {TaskItemComponent} from '../taskItem/task-item.component';
 import {FormsModule} from '@angular/forms';
+import {
+  CdkDrag,
+  CdkDragDrop,
+  CdkDropList,
+  CdkDropListGroup,
+  moveItemInArray,
+  transferArrayItem
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, TaskItemComponent, FormsModule],
+  imports: [CommonModule, FormsModule, TaskItemComponent, FormsModule, CdkDropList, CdkDrag, CdkDropListGroup],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
@@ -88,5 +96,29 @@ export class TaskListComponent implements OnInit {
       minutesBeforeDeadline: 1,
       userTimeZone: 'Europe/Minsk',
     };
+  }
+
+  drop(event: CdkDragDrop<any[]>, newPriority: string) {
+    if (event.previousContainer != event.container) {
+      const task = event.previousContainer.data[event.previousIndex];
+
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+
+      const priorityMap: { [key: string]: number } = { high: 1, medium: 2, low: 3 };
+      task.priority = priorityMap[newPriority];
+
+      this.updateTaskPriority(task);
+    }
+  }
+
+  updateTaskPriority(taskDto: TaskDto) {
+    this.tasksService.updateTask(taskDto).subscribe(
+      () => {}
+    );
   }
 }

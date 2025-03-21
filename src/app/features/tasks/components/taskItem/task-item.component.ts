@@ -1,4 +1,4 @@
-﻿import {Component, Input } from '@angular/core';
+﻿import {Component, ElementRef, HostListener, Input} from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
 import {TaskDto} from '../../models/task.model';
 import {FormsModule} from '@angular/forms';
@@ -35,7 +35,9 @@ export class TaskItemComponent {
 
   categoryKeys: number[] = Object.keys(this.categoryMap).map(Number);
 
-  constructor(private tasksService: TasksService) {}
+  constructor(
+    private tasksService: TasksService,
+    private eRef: ElementRef) {}
 
   enableEditing() {
     if (!this.task) {
@@ -68,6 +70,13 @@ export class TaskItemComponent {
       this.tasksService.updateTask(this.task).subscribe(() => {
         this.isEditing = false;
       });
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: Event) {
+    if (this.isEditing && !this.eRef.nativeElement.contains(event.target)) {
+      this.isEditing = false;
     }
   }
 

@@ -1,10 +1,11 @@
-﻿<div class="task-container">
-
+﻿<div cdkDropListGroup class="task-container">
   <div class="task-form-container">
-
     <div class="task-columns">
-      <div class="task-column">
 
+      <div class="task-column"
+           cdkDropList
+           [cdkDropListData]="highPriorityTasks"
+           (cdkDropListDropped)="drop($event, 'high')">
         <div class="task-header">
           <h3>Высокий приоритет</h3>
           <button class="add-task-btn" (click)="toggleAddTaskForm('high')">+</button>
@@ -28,16 +29,19 @@
           <button (click)="addTask(1)">Сохранить</button>
         </div>
 
-        <app-task-item
-          *ngFor="let task of highPriorityTasks"
-          [task]="task"
-          [refreshTasks]="getAllTasksOfUser.bind(this)">
-        </app-task-item>
+          <app-task-item
+            *ngFor="let task of highPriorityTasks"
+            [task]="task"
+            [refreshTasks]="getAllTasksOfUser.bind(this)"
+            cdkDrag>
+          </app-task-item>
 
       </div>
 
-      <div class="task-column">
-
+      <div class="task-column"
+           cdkDropList
+           [cdkDropListData]="mediumPriorityTasks"
+           (cdkDropListDropped)="drop($event, 'medium')">
         <div class="task-header">
           <h3>Средний приоритет</h3>
           <button class="add-task-btn" (click)="toggleAddTaskForm('medium')">+</button>
@@ -61,15 +65,19 @@
           <button (click)="addTask(2)">Сохранить</button>
         </div>
 
-        <app-task-item
-          *ngFor="let task of mediumPriorityTasks"
-          [task]="task"
-          [refreshTasks]="getAllTasksOfUser.bind(this)">
-        </app-task-item>
+          <app-task-item
+            *ngFor="let task of mediumPriorityTasks"
+            [task]="task"
+            [refreshTasks]="getAllTasksOfUser.bind(this)"
+            cdkDrag>
+          </app-task-item>
+
       </div>
 
-      <div class="task-column">
-
+      <div class="task-column"
+           cdkDropList
+           [cdkDropListData]="lowPriorityTasks"
+           (cdkDropListDropped)="drop($event, 'low')">
         <div class="task-header">
           <h3>Низкий приоритет</h3>
           <button class="add-task-btn" (click)="toggleAddTaskForm('low')">+</button>
@@ -93,14 +101,15 @@
           <button (click)="addTask(3)">Сохранить</button>
         </div>
 
-        <app-task-item
-          *ngFor="let task of lowPriorityTasks"
-          [task]="task"
-          [refreshTasks]="getAllTasksOfUser.bind(this)">
-        </app-task-item>
+          <app-task-item
+            *ngFor="let task of lowPriorityTasks"
+            [task]="task"
+            [refreshTasks]="getAllTasksOfUser.bind(this)"
+            cdkDrag>
+          </app-task-item>
+
       </div>
 
     </div>
-
   </div>
 </div>
