@@ -9,7 +9,6 @@ import {
   CdkDragDrop,
   CdkDropList,
   CdkDropListGroup,
-  moveItemInArray,
   transferArrayItem
 } from '@angular/cdk/drag-drop';
 
@@ -117,6 +116,7 @@ export class TaskListComponent implements OnInit {
   }
 
   updateTaskPriority(taskDto: TaskDto) {
+    taskDto.userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     this.tasksService.updateTask(taskDto).subscribe(
       () => {}
     );
