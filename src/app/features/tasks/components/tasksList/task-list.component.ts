@@ -67,9 +67,7 @@ export class TaskListComponent implements OnInit {
     this.newTask.priority = priority;
     this.newTask.category = (Number)(this.newTask.category);
     this.newTask.taskId = crypto.randomUUID();
-
-    const localDeadline = new Date(this.newTask.deadline);
-    this.newTask.deadline = new Date(localDeadline.getTime() - localDeadline.getTimezoneOffset() * 60000);
+    this.newTask.deadline = new Date(this.newTask.deadline);
 
     this.tasksService.createTask(this.newTask).subscribe(() => {
       this.getAllTasksOfUser();

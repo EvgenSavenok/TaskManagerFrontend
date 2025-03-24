@@ -49,9 +49,13 @@ export class TaskItemComponent {
     this.editedCategory = this.task.category;
     this.editedMinutesBeforeDeadline = this.task.minutesBeforeDeadline;
 
-    this.editedDeadlineString = this.task.deadline
-      ? new Date(this.task.deadline).toISOString().slice(0, 16)
-      : '';
+    if (this.task.deadline) {
+      const date = new Date(this.task.deadline);
+      const offset = date.getTimezoneOffset() * 60000;
+      this.editedDeadlineString = new Date(date.getTime() - offset)
+        .toISOString()
+        .slice(0, 16);
+    }
   }
 
   saveEdit() {
