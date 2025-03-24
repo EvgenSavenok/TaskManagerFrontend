@@ -3,6 +3,7 @@ import { TasksService } from '../../services/tasks.service';
 import {TaskDto} from '../../models/task.model';
 import {FormsModule} from '@angular/forms';
 import {DatePipe, NgForOf, NgIf} from '@angular/common';
+import {CommentsListComponent} from '../../../comments/commentsList/comments-list.component';
 
 @Component({
   selector: 'app-task-item',
@@ -11,7 +12,8 @@ import {DatePipe, NgForOf, NgIf} from '@angular/common';
     FormsModule,
     NgForOf,
     NgIf,
-    DatePipe
+    DatePipe,
+    CommentsListComponent
   ],
   styleUrls: ['./task-item.component.css']
 })

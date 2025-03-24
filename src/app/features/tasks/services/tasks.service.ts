@@ -25,6 +25,7 @@ export class TasksService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${accessToken}`
     });
+
     return this.http.post<TaskDto>(`${this.baseUrl}/tasks/addTask`, task, { headers });
   }
 
@@ -37,12 +38,11 @@ export class TasksService {
     return this.http.put<TaskDto>(`${this.baseUrl}/tasks/updateTask`, task, { headers });
   }
 
-  deleteTask(id: string): Observable<void> {
+  deleteTask(taskId: string): Observable<void> {
     const accessToken = localStorage.getItem('accessToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${accessToken}`
     });
-
-    return this.http.delete<void>(`${this.baseUrl}/tasks/deleteTask/${id}`, { headers });
+    return this.http.delete<void>(`${this.baseUrl}/tasks/deleteTask/${taskId}`, { headers });
   }
 }

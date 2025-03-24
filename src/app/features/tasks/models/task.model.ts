@@ -1,12 +1,6 @@
 ﻿export interface TagDto {
-  TagId: string;
-  Name: string;
-}
-
-export interface CommentDto {
-  CommentId: string;
-  Content: string;
-  CreatedDate: Date;
+  tagId: string;
+  name: string;
 }
 
 export interface TaskDto {
