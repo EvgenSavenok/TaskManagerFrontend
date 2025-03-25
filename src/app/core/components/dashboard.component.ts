@@ -7,6 +7,7 @@ import { TaskListComponent } from '../../features/tasks/components/tasksList/tas
 import { GetAllUsersComponent } from '../../features/users/components/usersList/get-all-users.component';
 import {Router} from '@angular/router';
 import {LogoutComponent} from '../../features/users/components/logout/logout.component';
+import {TagsControlPanelComponent} from '../../features/tags/components/tagsControlPanel/tags-control-panel.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,7 @@ import {LogoutComponent} from '../../features/users/components/logout/logout.com
     NgIf,
     TaskListComponent,
     GetAllUsersComponent,
+    TagsControlPanelComponent,
     LogoutComponent
   ],
   styleUrls: ['./dashboard.component.css']
@@ -23,13 +25,12 @@ export class DashboardComponent implements OnInit {
   role: string | null = null;
   users: any[] = [];
   tasks: any[] = [];
+  tags: any[] = [];
   errorMessage: string | null = null;
 
   constructor(
     private usersService: UsersService,
-    private tasksService: TasksService,
     private authService: AuthService,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +43,6 @@ export class DashboardComponent implements OnInit {
       this.getAllUsers();
     } else if (this.authService.isUser()) {
       this.role = "User";
-      this.getTasks();
     } else {
       this.errorMessage = 'Роль пользователя не определена.';
     }
@@ -57,16 +57,5 @@ export class DashboardComponent implements OnInit {
         this.errorMessage = 'Ошибка при загрузке пользователей: ' + error.message;
       }
     );
-  }
-
-  getTasks() {
-    // this.tasksService.getAllTasks().subscribe(
-    //   (response) => {
-    //     this.tasks = response;
-    //   },
-    //   (error) => {
-    //     this.errorMessage = 'Ошибка при загрузке задач: ' + error.message;
-    //   }
-    // );
   }
 }

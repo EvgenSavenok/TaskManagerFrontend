@@ -8,8 +8,9 @@
   <app-get-all-users [users]="users"></app-get-all-users>
 </div>
 
-<div *ngIf="role === 'User'">
-  <app-task-list [tasks]="tasks"></app-task-list>
+<div *ngIf="role === 'User'" style="display: flex; gap: 20px;">
+  <app-task-list [tasks]="tasks" style="flex: 2;"></app-task-list>
+  <app-tags-control-panel [tags]="tags" style="flex: 1;"></app-tags-control-panel>
 </div>
 
 <div *ngIf="role !== 'Administrator' && role !== 'User'">

@@ -1,5 +1,5 @@
 ﻿import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild, AfterViewChecked } from '@angular/core';
-import { CommentDto } from '../models/comment.model';
+import { CommentDto } from '../../models/comment.model';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 

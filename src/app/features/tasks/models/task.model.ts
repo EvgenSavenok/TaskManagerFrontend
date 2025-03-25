@@ -1,9 +1,4 @@
-﻿export interface TagDto {
-  tagId: string;
-  name: string;
-}
-
-export interface TaskDto {
+﻿export interface TaskDto {
   taskId: string;
   title: string;
   description: string;

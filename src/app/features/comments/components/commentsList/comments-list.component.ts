@@ -1,6 +1,6 @@
 ﻿import { Component, Input, OnInit } from '@angular/core';
-import { CommentsService } from '../services/comments.service';
-import { CommentDto } from '../models/comment.model';
+import { CommentsService } from '../../services/comments.service';
+import { CommentDto } from '../../models/comment.model';
 import {NgForOf, NgIf} from '@angular/common';
 import {CommentItemComponent} from '../commentItem/comment-item.component';
 import {FormsModule} from '@angular/forms';
