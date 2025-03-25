@@ -1,5 +1,14 @@
 ﻿<div class="comment">
-  <p>{{ comment.content }}</p>
-  <span class="delete-btn" (click)="confirmDelete()">&#10006;</span>
-  <span class="update-btn" (click)="updateComment()">&#9998;</span>
+
+  <ng-container *ngIf="isEditing; else viewMode">
+    <input #editInput type="text" [(ngModel)]="comment.content" (click)="$event.stopPropagation()" />
+    <span class="confirm-btn" (click)="confirmUpdate()">&#10004;</span>
+  </ng-container>
+
+  <ng-template #viewMode>
+    <p>{{ comment.content }}</p>
+    <span class="edit-btn" (click)="startEditing()">&#9998;</span>
+    <span class="delete-btn" (click)="confirmDelete()">&#10006;</span>
+  </ng-template>
+
 </div>

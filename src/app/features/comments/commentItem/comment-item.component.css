@@ -12,7 +12,7 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: pre-wrap;
-  max-width: 100%;
+  max-width: 85%;
 }
 
 .comment small {
@@ -20,8 +20,16 @@
   margin-right: 10px;
 }
 
-.delete-btn {
+.delete-btn, .edit-btn, .confirm-btn {
   cursor: pointer;
+  padding: 5px;
+}
+
+.delete-btn {
   color: red;
-  font-weight: bold;
+}
+
+input {
+  padding: 5px;
+  font-size: 14px;
 }
