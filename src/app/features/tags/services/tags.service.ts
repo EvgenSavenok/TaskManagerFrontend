@@ -20,4 +20,31 @@ export class TagsService {
 
     return this.http.get<TagDto[]>(`${this.baseUrl}/tags/getAllTags`, { headers });
   }
+
+  createTag(tag: TagDto): Observable<TagDto> {
+    const accessToken = localStorage.getItem('accessToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${accessToken}`
+    });
+
+    return this.http.post<TagDto>(`${this.baseUrl}/tags/addTag`, tag, { headers });
+  }
+
+  updateTag(tag: TagDto): Observable<TagDto> {
+    const accessToken = localStorage.getItem('accessToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${accessToken}`
+    });
+
+    return this.http.put<TagDto>(`${this.baseUrl}/tags/updateTag/${tag.id}`, tag, { headers });
+  }
+
+  deleteTag(tagId: string): Observable<void> {
+    const accessToken = localStorage.getItem('accessToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${accessToken}`
+    });
+
+    return this.http.delete<void>(`${this.baseUrl}/tags/deleteTag/${tagId}`, { headers });
+  }
 }

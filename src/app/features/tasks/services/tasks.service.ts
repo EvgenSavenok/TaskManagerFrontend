@@ -43,6 +43,7 @@ export class TasksService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${accessToken}`
     });
+
     return this.http.delete<void>(`${this.baseUrl}/tasks/deleteTask/${taskId}`, { headers });
   }
 }
