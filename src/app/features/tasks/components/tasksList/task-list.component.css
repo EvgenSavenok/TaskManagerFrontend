@@ -54,6 +54,7 @@
 }
 
 .add-task-form button {
+  width: 107%;
   background-color: #28a745;
   color: white;
   padding: 8px;

@@ -4,11 +4,7 @@ import {AsyncPipe, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-error-message',
-  template: `
-    <div *ngIf="errorMessage$ | async as errorMessage" class="error-banner">
-      {{ errorMessage }}
-    </div>
-  `,
+  templateUrl: './error-message.component.html',
   imports: [
     NgIf,
     AsyncPipe

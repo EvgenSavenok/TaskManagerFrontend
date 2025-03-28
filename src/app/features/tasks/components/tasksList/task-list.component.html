@@ -16,7 +16,7 @@
           <input [(ngModel)]="newTask.description" placeholder="Описание" />
 
           <label>Категория:</label>
-          <select [(ngModel)]="newTask.category">
+          <select [(ngModel)]="newTask.category" class="category-select">
             <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
           </select>
 
@@ -25,6 +25,12 @@
 
           <label>Минут до дедлайна:</label>
           <input type="number" [(ngModel)]="newTask.minutesBeforeDeadline" min="1" />
+
+          <app-tag-list-in-add-task
+            [tags]="newTask.taskTags"
+            (tagsChanged)="onTagsChanged($event)">
+          </app-tag-list-in-add-task>
+
 
           <button (click)="addTask(1)">Сохранить</button>
         </div>
@@ -62,6 +68,8 @@
           <label>Минут до дедлайна:</label>
           <input type="number" [(ngModel)]="newTask.minutesBeforeDeadline" min="1" />
 
+          <app-tag-list-in-add-task/>
+
           <button (click)="addTask(2)">Сохранить</button>
         </div>
 
@@ -97,6 +105,8 @@
 
           <label>Минут до дедлайна:</label>
           <input type="number" [(ngModel)]="newTask.minutesBeforeDeadline" min="1" />
+
+          <app-tag-list-in-add-task/>
 
           <button (click)="addTask(3)">Сохранить</button>
         </div>

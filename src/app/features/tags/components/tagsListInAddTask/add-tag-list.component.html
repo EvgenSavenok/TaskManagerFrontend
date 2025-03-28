@@ -1,0 +1,28 @@
+﻿<div class="tag-list-container">
+  <span class="add-tag-button" (click)="openTagPopup($event)">&#43;</span>
+
+  <div class="selected-tags">
+    <span *ngFor="let tag of tags" class="selected-tag">
+      {{ tag.tagName }}
+    </span>
+  </div>
+</div>
+
+<ng-template #tagPopupTemplate>
+  <div class="tag-popup">
+    <h4>Выберите тег</h4>
+
+    <div class="tag-list">
+      <span
+        *ngFor="let tag of availableTags"
+        class="tag-item"
+        (click)="addTag(tag)"
+        (mouseover)="hoveredTag = tag.tagName"
+        (mouseleave)="hoveredTag = null"
+        [class.hovered]="hoveredTag === tag.tagName">
+        {{ tag.tagName }}
+      </span>
+    </div>
+
+  </div>
+</ng-template>

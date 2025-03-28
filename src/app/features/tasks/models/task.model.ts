@@ -1,4 +1,6 @@
-﻿export interface TaskDto {
+﻿import {TagDto} from '../../tags/models/tag.model';
+
+export interface TaskDto {
   taskId: string;
   title: string;
   description: string;
@@ -7,6 +9,7 @@
   deadline: Date;
   minutesBeforeDeadline: number;
   userTimeZone: string;
+  taskTags: TagDto[];
 
   [key: string]: any;
 }

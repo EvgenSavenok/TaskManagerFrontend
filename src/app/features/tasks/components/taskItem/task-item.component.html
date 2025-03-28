@@ -8,6 +8,7 @@
     <strong>Дедлайн:</strong> {{ task.deadline | date:'short' }}<br>
     <strong>Минут до дедлайна:</strong> {{ task.minutesBeforeDeadline }}
     <app-comments-list [taskId]="task.taskId"></app-comments-list>
+    <app-tags-list [taskId]="task.taskId"></app-tags-list>
   </div>
 
   <div *ngIf="isEditing">

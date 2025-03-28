@@ -1,0 +1,38 @@
+﻿.tags-container {
+  padding: 12px;
+  margin-top: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-item {
+  background: #ddd;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.tag-name {
+  font-weight: bold;
+}
+
+.no-comments {
+  color: #777;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+app-tag-list-in-add-task {
+  margin-top: 10px;
+}

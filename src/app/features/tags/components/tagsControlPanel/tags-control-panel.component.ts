@@ -25,7 +25,6 @@ export class TagsControlPanelComponent implements OnInit {
   showAddTag: boolean = false;
   newTagName = '';
   editingTag: TagDto | null = null;
-  errorMessage: string | null = null;
 
   constructor(
     private tagsService: TagsService,
@@ -82,7 +81,7 @@ export class TagsControlPanelComponent implements OnInit {
         return throwError(() => error);
       })
     ).subscribe(() => {
-      this.loadTags();
+      window.location.reload();
     });
   }
 
@@ -96,7 +95,9 @@ export class TagsControlPanelComponent implements OnInit {
           this.errorHandlerService.showError('Ошибка удаления тега');
           return throwError(() => error);
         })
-      ).subscribe();
+      ).subscribe(() => {
+        window.location.reload();
+      });
     }
   }
 

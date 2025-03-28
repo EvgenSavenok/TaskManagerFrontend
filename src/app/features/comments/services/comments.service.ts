@@ -18,8 +18,7 @@ export class CommentsService {
       'Authorization': `Bearer ${accessToken}`
     });
 
-    return this.http.get<CommentDto[]>(
-      `${this.baseUrl}/comments/${taskId}/getAllCommentsOfTask`, { headers });
+    return this.http.get<CommentDto[]>(`${this.baseUrl}/comments/${taskId}/getAllCommentsOfTask`, { headers });
   }
 
   createComment(comment: CommentDto): Observable<CommentDto> {

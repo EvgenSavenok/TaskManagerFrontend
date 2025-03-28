@@ -13,11 +13,13 @@ import {
 } from '@angular/cdk/drag-drop';
 import {catchError, throwError} from 'rxjs';
 import {ErrorHandlerService} from '../../../../core/services/error-handler.service';
+import {AddTagItemComponent} from '../../../tags/components/tagsListInAddTask/add-tag-list.component';
+import {TagDto} from '../../../tags/models/tag.model';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, TaskItemComponent, FormsModule, CdkDropList, CdkDrag, CdkDropListGroup],
+  imports: [CommonModule, FormsModule, TaskItemComponent, FormsModule, CdkDropList, CdkDrag, CdkDropListGroup, AddTagItemComponent],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
@@ -90,6 +92,10 @@ export class TaskListComponent implements OnInit {
     });
   }
 
+  onTagsChanged(tags: TagDto[]): void {
+    this.newTask.taskTags = tags;
+  }
+
   private closeForms() {
     this.isAddingHigh = false;
     this.isAddingMedium = false;
@@ -106,6 +112,7 @@ export class TaskListComponent implements OnInit {
       deadline: new Date(),
       minutesBeforeDeadline: 1,
       userTimeZone: 'Europe/Minsk',
+      taskTags: []
     };
   }
 

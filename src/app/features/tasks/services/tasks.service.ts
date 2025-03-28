@@ -25,7 +25,7 @@ export class TasksService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${accessToken}`
     });
-
+    console.log(task);
     return this.http.post<TaskDto>(`${this.baseUrl}/tasks/addTask`, task, { headers });
   }
 

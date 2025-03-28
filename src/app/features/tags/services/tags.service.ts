@@ -21,6 +21,15 @@ export class TagsService {
     return this.http.get<TagDto[]>(`${this.baseUrl}/tags/getAllTags`, { headers });
   }
 
+  getAllTagsOfTask(taskId: string): Observable<TagDto[]> {
+    const accessToken = localStorage.getItem('accessToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${accessToken}`
+    });
+
+    return this.http.get<TagDto[]>(`${this.baseUrl}/tags/${taskId}/getAllTagsOfTask`, { headers });
+  }
+
   createTag(tag: TagDto): Observable<TagDto> {
     const accessToken = localStorage.getItem('accessToken');
     const headers = new HttpHeaders({

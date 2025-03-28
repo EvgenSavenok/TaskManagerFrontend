@@ -5,8 +5,8 @@ import {FormsModule} from '@angular/forms';
 import {DatePipe, NgForOf, NgIf} from '@angular/common';
 import {CommentsListComponent} from '../../../comments/components/commentsList/comments-list.component';
 import {catchError, throwError} from 'rxjs';
-import {TagsService} from '../../../tags/services/tags.service';
 import {ErrorHandlerService} from '../../../../core/services/error-handler.service';
+import {TagListComponent} from '../../../tags/components/tagsListInTask/tag-list.component';
 
 @Component({
   selector: 'app-task-item',
@@ -16,7 +16,8 @@ import {ErrorHandlerService} from '../../../../core/services/error-handler.servi
     NgForOf,
     NgIf,
     DatePipe,
-    CommentsListComponent
+    CommentsListComponent,
+    TagListComponent
   ],
   styleUrls: ['./task-item.component.css']
 })

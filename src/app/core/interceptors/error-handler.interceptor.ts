@@ -12,6 +12,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         const errorMessage = error.error?.message || 'Произошла ошибка';
         this.errorHandlerService.showError(errorMessage);
+
         return throwError(() => error);
       })
     );
