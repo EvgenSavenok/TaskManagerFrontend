@@ -3,11 +3,13 @@
   <div class="tags-panel">
     <h3>Управление тегами</h3>
 
-    <button (click)="showAddTag = true" class="add-btn">&#10133;</button>
+    <div class="add-tag-container">
+      <button (click)="showAddTag = true" class="add-btn">&#10133;</button>
 
-    <div *ngIf="showAddTag" class="add-tag-form">
-      <input [(ngModel)]="newTagName" placeholder="Название тега" />
-      <button (click)="addTag()">&#10004;</button>
+      <div *ngIf="showAddTag" class="add-tag-form">
+        <input [(ngModel)]="newTagName" placeholder="Название тега" />
+        <button (click)="addTag()">&#10004;</button>
+      </div>
     </div>
 
     <ul class="tags-list">

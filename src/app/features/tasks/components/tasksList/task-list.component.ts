@@ -11,6 +11,8 @@ import {
   CdkDropListGroup,
   transferArrayItem
 } from '@angular/cdk/drag-drop';
+import {catchError, throwError} from 'rxjs';
+import {ErrorHandlerService} from '../../../../core/services/error-handler.service';
 
 @Component({
   selector: 'app-task-list',
@@ -38,14 +40,21 @@ export class TaskListComponent implements OnInit {
     { id: 4, name: 'Домашние дела' }
   ];
 
-  constructor(private tasksService: TasksService) {}
+  constructor(
+    private tasksService: TasksService,
+    private errorHandlerService: ErrorHandlerService) {}
 
   ngOnInit() {
     this.getAllTasksOfUser();
   }
 
   getAllTasksOfUser() {
-    this.tasksService.getTasks().subscribe((tasks) => {
+    this.tasksService.getTasks().pipe(
+      catchError(error => {
+        this.errorHandlerService.showError('Ошибка получения всех задач');
+        return throwError(() => error);
+      })
+    ).subscribe((tasks) => {
       this.tasks = tasks;
       this.categorizeTasksByPriority();
     });
@@ -69,7 +78,12 @@ export class TaskListComponent implements OnInit {
     this.newTask.taskId = crypto.randomUUID();
     this.newTask.deadline = new Date(this.newTask.deadline);
 
-    this.tasksService.createTask(this.newTask).subscribe(() => {
+    this.tasksService.createTask(this.newTask).pipe(
+      catchError(error => {
+        this.errorHandlerService.showError('Ошибка создния задачи');
+        return throwError(() => error);
+      })
+    ).subscribe(() => {
       this.getAllTasksOfUser();
       this.newTask = this.getEmptyTask();
       this.closeForms();
@@ -115,7 +129,13 @@ export class TaskListComponent implements OnInit {
 
   updateTaskPriority(taskDto: TaskDto) {
     taskDto.userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    this.tasksService.updateTask(taskDto).subscribe(
+
+    this.tasksService.updateTask(taskDto).pipe(
+      catchError(error => {
+        this.errorHandlerService.showError('Ошибка обновления приоритета задачи');
+        return throwError(() => error);
+      })
+    ).subscribe(
       () => {}
     );
   }

@@ -8,9 +8,9 @@
   <app-get-all-users [users]="users"></app-get-all-users>
 </div>
 
-<div *ngIf="role === 'User'" style="display: flex; gap: 20px;">
-  <app-task-list [tasks]="tasks" style="flex: 2;"></app-task-list>
-  <app-tags-control-panel [tags]="tags" style="flex: 1;"></app-tags-control-panel>
+<div *ngIf="role === 'User'" class="user-container">
+  <app-task-list [tasks]="tasks" class="app-task-list-container"></app-task-list>
+  <app-tags-control-panel [tags]="tags" class="app-tags-control-panel-container"></app-tags-control-panel>
 </div>
 
 <div *ngIf="role !== 'Administrator' && role !== 'User'">

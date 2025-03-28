@@ -4,6 +4,9 @@ import {TaskDto} from '../../models/task.model';
 import {FormsModule} from '@angular/forms';
 import {DatePipe, NgForOf, NgIf} from '@angular/common';
 import {CommentsListComponent} from '../../../comments/components/commentsList/comments-list.component';
+import {catchError, throwError} from 'rxjs';
+import {TagsService} from '../../../tags/services/tags.service';
+import {ErrorHandlerService} from '../../../../core/services/error-handler.service';
 
 @Component({
   selector: 'app-task-item',
@@ -39,6 +42,7 @@ export class TaskItemComponent {
 
   constructor(
     private tasksService: TasksService,
+    private errorHandlerService: ErrorHandlerService,
     private eRef: ElementRef) {}
 
   enableEditing() {
@@ -73,7 +77,12 @@ export class TaskItemComponent {
 
       this.task.userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-      this.tasksService.updateTask(this.task).subscribe(() => {
+      this.tasksService.updateTask(this.task).pipe(
+        catchError(error => {
+          this.errorHandlerService.showError('Ошибка обновления задачи');
+          return throwError(() => error);
+        })
+      ).subscribe(() => {
         this.isEditing = false;
       });
     }
@@ -88,7 +97,12 @@ export class TaskItemComponent {
 
   deleteTask() {
     if (this.task) {
-      this.tasksService.deleteTask(this.task.taskId).subscribe(() => {
+      this.tasksService.deleteTask(this.task.taskId).pipe(
+        catchError(error => {
+          this.errorHandlerService.showError('Ошибка удаления задачи');
+          return throwError(() => error);
+        })
+      ).subscribe(() => {
         this.refreshTasks();
       });
     }
