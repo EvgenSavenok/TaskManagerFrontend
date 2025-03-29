@@ -1,11 +1,9 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../../features/users/services/users.service';
 import { AuthService } from '../../services/auth.service';
-import { TasksService } from '../../../features/tasks/services/tasks.service';
 import { NgIf } from '@angular/common';
 import { TaskListComponent } from '../../../features/tasks/components/tasksList/task-list.component';
 import { GetAllUsersComponent } from '../../../features/users/components/usersList/get-all-users.component';
-import {Router} from '@angular/router';
 import {LogoutComponent} from '../../../features/users/components/logout/logout.component';
 import {TagsControlPanelComponent} from '../../../features/tags/components/tagsControlPanel/tags-control-panel.component';
 
@@ -35,6 +33,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
+    setInterval(() => {
+      this.authService.refreshToken().subscribe({
+        next: () => console.log('Токен успешно обновлен'),
+      });
+    }, 20000);
   }
 
   loadData() {

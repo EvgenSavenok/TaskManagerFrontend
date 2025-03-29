@@ -12,8 +12,7 @@ export class LogoutComponent {
 
   logout() {
     localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-
+    document.cookie = 'refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT;';
     this.router.navigate(['/login']);
   }
 }

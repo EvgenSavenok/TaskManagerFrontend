@@ -24,9 +24,8 @@ export class LoginComponent {
 
     this.usersService.login(userData).subscribe(
       (response) => {
-        localStorage.setItem('accessToken', response.accessToken);
-        localStorage.setItem('refreshToken', response.refreshToken);
 
+        localStorage.setItem('accessToken', response.accessToken);
         this.router.navigateByUrl('/dashboard');
       },
       () => {
