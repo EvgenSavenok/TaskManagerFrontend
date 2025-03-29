@@ -1,8 +1,7 @@
-﻿import {Component, EventEmitter, Input, Output} from '@angular/core';
-import { UsersService } from '../../services/users.service';
+﻿import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {ErrorHandlerService} from '../../../../core/services/error-handler.service';
-import {catchError, throwError} from 'rxjs';
+import {SignalRService} from '../../../../core/services/signalr.service';
 
 @Component({
   selector: 'app-delete-user',
@@ -12,14 +11,16 @@ import {catchError, throwError} from 'rxjs';
   ],
   styleUrls: ['./delete-user.component.css']
 })
-export class DeleteUserComponent {
+export class DeleteUserComponent implements OnInit {
   @Input() userId: string = '';
   @Output() userDeleted = new EventEmitter<void>();
   errorMessage: string | null = null;
 
   constructor(
-    private usersService: UsersService,
-    private errorHandlerService: ErrorHandlerService) {}
+    private errorHandlerService: ErrorHandlerService,
+    private signalRService: SignalRService) {}
+
+  ngOnInit(): void {}
 
   deleteUser() {
     if (!this.userId) {
@@ -33,13 +34,12 @@ export class DeleteUserComponent {
       return;
     }
 
-    this.usersService.deleteUser(this.userId).pipe(
-      catchError(error => {
-        this.errorHandlerService.showError('Ошибка удаления пользователя');
-        return throwError(() => error);
+    this.signalRService.hubConnection.invoke('DeleteUser', this.userId)
+      .then(() => {
+        this.userDeleted.emit();
       })
-    ).subscribe(() => {
-      this.userDeleted.emit();
-    });
+      .catch(() => {
+        this.errorHandlerService.showError("Ошибка при удалении пользователя")
+      });
   }
 }

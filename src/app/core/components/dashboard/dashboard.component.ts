@@ -34,10 +34,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.loadData();
     setInterval(() => {
-      this.authService.refreshToken().subscribe({
-        next: () => console.log('Токен успешно обновлен'),
-      });
-    }, 20000);
+      this.authService.refreshToken().subscribe({});
+      // Expiration time of access token (5 minutes)
+    }, 10000);
   }
 
   loadData() {

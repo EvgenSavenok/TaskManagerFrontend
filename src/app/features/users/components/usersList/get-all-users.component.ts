@@ -2,6 +2,7 @@
 import { UsersService } from '../../services/users.service';
 import {NgForOf, NgIf} from '@angular/common';
 import {DeleteUserComponent} from '../deleteUser/delete-user.component';
+import {SignalRService} from '../../../../core/services/signalr.service';
 
 @Component({
   selector: 'app-get-all-users',
@@ -17,10 +18,13 @@ export class GetAllUsersComponent implements OnInit {
   @Input() users: any[] = [];
   errorMessage: string | null = null;
 
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private signalRService: SignalRService) {}
 
   ngOnInit(): void {
     this.getAllUsers();
+    this.signalRService.startConnection();
   }
 
   getAllUsers() {
