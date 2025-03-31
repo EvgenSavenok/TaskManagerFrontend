@@ -1,8 +1,11 @@
 ﻿<div class="login-container">
   <h2>Вход</h2>
-  <input type="email" [(ngModel)]="username" placeholder="Никнейм" />
-  <input type="password" [(ngModel)]="password" placeholder="Пароль" />
-  <button (click)="login()">Войти</button>
+
+  <div>
+    <input type="email" [(ngModel)]="username" placeholder="Никнейм" />
+    <input type="password" [(ngModel)]="password" placeholder="Пароль" />
+    <button (click)="login()">Войти</button>
+  </div>
 
   <div class="register-link">
     <p>Нет аккаунта? <a routerLink="/register">Зарегистрироваться</a></p>

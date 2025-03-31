@@ -1,0 +1,14 @@
+﻿<div class="tags-container">
+  <h4>Теги</h4>
+
+  <ul class="tags-list">
+    <li *ngFor="let tag of tags" class="tag-item">
+
+      <span class="tag-name">{{ tag.tagName }}</span>
+
+    </li>
+  </ul>
+
+  <div *ngIf="tags.length === 0" class="no-comments">Нет тегов</div>
+
+</div>

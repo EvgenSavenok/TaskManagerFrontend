@@ -2,14 +2,15 @@
   {{ errorMessage }}
 </div>
 
-<button (click)="logout()" class="logout-button">Выход</button>
+<div><app-logout></app-logout></div>
 
 <div *ngIf="role === 'Administrator'">
   <app-get-all-users [users]="users"></app-get-all-users>
 </div>
 
-<div *ngIf="role === 'User'">
-  <app-task-list [tasks]="tasks"></app-task-list>
+<div *ngIf="role === 'User'" class="user-container">
+  <app-task-list [tasks]="tasks" class="app-task-list-container"></app-task-list>
+  <app-tags-control-panel [tags]="tags" class="app-tags-control-panel-container"></app-tags-control-panel>
 </div>
 
 <div *ngIf="role !== 'Administrator' && role !== 'User'">

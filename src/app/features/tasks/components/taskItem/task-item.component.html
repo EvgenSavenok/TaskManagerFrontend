@@ -1,0 +1,31 @@
+﻿<div class="task-card" *ngIf="task" (dblclick)="enableEditing()">
+  <span class="delete-icon" (click)="deleteTask()">&#10006;</span>
+
+  <div *ngIf="!isEditing" class="editable-field">
+    <strong>Название:</strong> {{ task.title }}<br>
+    <strong>Описание:</strong> {{ task.description }}<br>
+    <strong>Категория:</strong> {{ getCategoryName(task.category) }}<br>
+    <strong>Дедлайн:</strong> {{ task.deadline | date:'short' }}<br>
+    <strong>Минут до дедлайна:</strong> {{ task.minutesBeforeDeadline }}
+    <app-comments-list [taskId]="task.taskId"></app-comments-list>
+    <app-tags-list [taskId]="task.taskId"></app-tags-list>
+  </div>
+
+  <div *ngIf="isEditing">
+    <input [(ngModel)]="editedTitle" placeholder="Название" class="editing"/>
+    <input [(ngModel)]="editedDescription" placeholder="Описание" class="editing"/>
+
+    <select [(ngModel)]="editedCategory" class="editing-combo-box">
+      <option *ngFor="let key of categoryKeys" [value]="key">{{ categoryMap[key] }}</option>
+    </select>
+
+    <input
+      [(ngModel)]="editedDeadlineString"
+      type="datetime-local"
+      class="editing"
+    />
+    <input [(ngModel)]="editedMinutesBeforeDeadline" type="number" placeholder="Минут до дедлайна" class="editing"/>
+  </div>
+
+  <span class="save-icon" *ngIf="isEditing" (click)="saveEdit()">&#10004;</span>
+</div>

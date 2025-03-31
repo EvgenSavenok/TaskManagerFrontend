@@ -1,0 +1,17 @@
+﻿<div class="comments-container">
+  <h4>Комментарии</h4>
+
+  <div class="comment-input-container">
+    <input [(ngModel)]="newCommentText" placeholder="Напишите комментарий..." class="comment-input"/>
+    <button (click)="addComment()" class="add-comment-button">Добавить</button>
+  </div>
+
+  <div *ngIf="comments.length === 0" class="no-comments">Нет комментариев</div>
+
+  <app-comment-item
+    *ngFor="let comment of comments"
+    [comment]="comment"
+    (delete)="deleteComment(comment.commentId)"
+    (update)="updateComment(comment)">
+  </app-comment-item>
+</div>

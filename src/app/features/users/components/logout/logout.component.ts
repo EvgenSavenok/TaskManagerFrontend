@@ -4,19 +4,15 @@ import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-logout',
-  template: '',
+  templateUrl: './logout.component.html',
+  styleUrls: ['./logout.component.css']
 })
 export class LogoutComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {
-    this.logout();
-  }
-
   logout() {
     localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-
+    document.cookie = 'refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT;';
     this.router.navigate(['/login']);
   }
 }

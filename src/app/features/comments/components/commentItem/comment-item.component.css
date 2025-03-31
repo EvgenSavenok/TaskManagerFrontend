@@ -1,0 +1,35 @@
+﻿.comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.comment p {
+  margin: 0;
+  flex: 1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  max-width: 85%;
+}
+
+.comment small {
+  color: gray;
+  margin-right: 10px;
+}
+
+.delete-btn, .edit-btn, .confirm-btn {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.delete-btn {
+  color: red;
+}
+
+input {
+  padding: 5px;
+  font-size: 14px;
+}

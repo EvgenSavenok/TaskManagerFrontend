@@ -12,7 +12,7 @@ export class UsersService {
   }
 
   login(user: { username: string; password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, user);
+    return this.http.post(`${this.apiUrl}/login`, user, { withCredentials: true });
   }
 
   register(user: { email: string; password: string; username: string }): Observable<any> {
