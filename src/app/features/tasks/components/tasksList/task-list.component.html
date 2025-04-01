@@ -68,7 +68,10 @@
           <label>Минут до дедлайна:</label>
           <input type="number" [(ngModel)]="newTask.minutesBeforeDeadline" min="1" />
 
-          <app-tag-list-in-add-task/>
+          <app-tag-list-in-add-task
+            [tags]="newTask.taskTags"
+            (tagsChanged)="onTagsChanged($event)">
+          </app-tag-list-in-add-task>
 
           <button (click)="addTask(2)">Сохранить</button>
         </div>
@@ -106,7 +109,10 @@
           <label>Минут до дедлайна:</label>
           <input type="number" [(ngModel)]="newTask.minutesBeforeDeadline" min="1" />
 
-          <app-tag-list-in-add-task/>
+          <app-tag-list-in-add-task
+            [tags]="newTask.taskTags"
+            (tagsChanged)="onTagsChanged($event)">
+          </app-tag-list-in-add-task>
 
           <button (click)="addTask(3)">Сохранить</button>
         </div>
