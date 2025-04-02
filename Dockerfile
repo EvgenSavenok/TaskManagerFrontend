@@ -12,8 +12,6 @@ RUN npm install -g http-server
 
 COPY --from=build /app/dist/task-manager /app/browser
 
-EXPOSE 4201
+EXPOSE 4200
 
-RUN ls -R /app/browser
-
-CMD ["http-server", "browser/browser", "-p", "4201"]
+CMD ["http-server", "browser/browser", "-p", "4200", "--push-state"]

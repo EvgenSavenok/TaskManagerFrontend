@@ -1,8 +1,8 @@
 ﻿import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {catchError, map, Observable, throwError} from 'rxjs';
-import {ErrorHandlerService} from './error-handler.service';
+import {catchError, map, Observable, of, throwError} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,8 @@ export class AuthService {
   private baseUrl = 'http://localhost:5271';
 
   constructor(
-    private http: HttpClient) {}
+    private http: HttpClient,
+    private router: Router) {}
 
   getAccessToken(): string | null {
     return localStorage.getItem('accessToken');
@@ -43,14 +44,14 @@ export class AuthService {
   localLogout() {
     localStorage.removeItem('accessToken');
     document.cookie = 'refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT;';
-    window.location.href = '/login';
-    // ToDo
-    // Cancellation token for get all tasks and get all tags methods
+    this.router.navigate(['/login']);
   }
 
-  refreshToken(): Observable<{ accessToken: string }> {
+  refreshToken(): Observable<{ accessToken: string } | null> {
     const accessToken = localStorage.getItem('accessToken');
-
+    if (!accessToken) {
+      return of(null);
+    }
     return this.http.post<{ accessToken: string }>(
       `${this.baseUrl}/token/refresh`,
       { accessToken: accessToken },
