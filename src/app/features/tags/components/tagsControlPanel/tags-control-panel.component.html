@@ -1,0 +1,32 @@
+﻿<div class="tags-panel-container">
+
+  <div class="tags-panel">
+    <h3>Управление тегами</h3>
+
+    <div class="add-tag-container">
+      <button (click)="showAddTag = true" class="add-btn">&#10133;</button>
+
+      <div *ngIf="showAddTag" class="add-tag-form">
+        <input [(ngModel)]="newTagName" placeholder="Название тега" />
+        <button (click)="addTag()">&#10004;</button>
+      </div>
+    </div>
+
+    <ul class="tags-list">
+      <li *ngFor="let tag of tags" class="tag-item" (dblclick)="startEditing(tag)">
+
+        <ng-container *ngIf="editingTag === tag; else viewMode">
+          <input [(ngModel)]="tag.tagName" (click)="$event.stopPropagation()" />
+          <span class="confirm-btn" (click)="confirmEdit(tag)">&#10004;</span>
+        </ng-container>
+
+        <ng-template #viewMode>
+          <span class="tag-name">{{ tag.tagName }}</span>
+          <span class="delete-btn" (click)="removeTag(tag)">&#10006;</span>
+        </ng-template>
+
+      </li>
+    </ul>
+  </div>
+
+</div>

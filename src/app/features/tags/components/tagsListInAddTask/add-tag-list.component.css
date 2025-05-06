@@ -1,0 +1,63 @@
+.tag-list-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tag-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.add-tag-button {
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tag-popup {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  width: 200px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.tag-item {
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  text-align: center;
+}
+
+.tag-item.hovered {
+  background: lightgray;
+}
+
+.selected-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.selected-tag {
+  background: #ddd;
+  border-radius: 20px;
+  font-size: 14px;
+  padding: 6px 12px;
+}

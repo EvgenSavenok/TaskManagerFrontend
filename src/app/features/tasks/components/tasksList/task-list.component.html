@@ -1,0 +1,131 @@
+﻿<div cdkDropListGroup class="task-container">
+  <div class="task-form-container">
+    <div class="task-columns">
+
+      <div class="task-column"
+           cdkDropList
+           [cdkDropListData]="highPriorityTasks"
+           (cdkDropListDropped)="drop($event, 'high')">
+        <div class="task-header">
+          <h3>Высокий приоритет</h3>
+          <button class="add-task-btn" (click)="toggleAddTaskForm('high')">+</button>
+        </div>
+
+        <div *ngIf="isAddingHigh" class="add-task-form">
+          <input [(ngModel)]="newTask.title" placeholder="Название" />
+          <input [(ngModel)]="newTask.description" placeholder="Описание" />
+
+          <label>Категория:</label>
+          <select [(ngModel)]="newTask.category" class="category-select">
+            <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+          </select>
+
+          <label>Дедлайн:</label>
+          <input type="datetime-local" [(ngModel)]="newTask.deadline" />
+
+          <label>Минут до дедлайна:</label>
+          <input type="number" [(ngModel)]="newTask.minutesBeforeDeadline" min="1" />
+
+          <app-tag-list-in-add-task
+            [tags]="newTask.taskTags"
+            (tagsChanged)="onTagsChanged($event)">
+          </app-tag-list-in-add-task>
+
+
+          <button (click)="addTask(1)">Сохранить</button>
+        </div>
+
+          <app-task-item
+            *ngFor="let task of highPriorityTasks"
+            [task]="task"
+            [refreshTasks]="getAllTasksOfUser.bind(this)"
+            cdkDrag>
+          </app-task-item>
+
+      </div>
+
+      <div class="task-column"
+           cdkDropList
+           [cdkDropListData]="mediumPriorityTasks"
+           (cdkDropListDropped)="drop($event, 'medium')">
+        <div class="task-header">
+          <h3>Средний приоритет</h3>
+          <button class="add-task-btn" (click)="toggleAddTaskForm('medium')">+</button>
+        </div>
+
+        <div *ngIf="isAddingMedium" class="add-task-form">
+          <input [(ngModel)]="newTask.title" placeholder="Название" />
+          <input [(ngModel)]="newTask.description" placeholder="Описание" />
+
+          <label>Категория:</label>
+          <select [(ngModel)]="newTask.category">
+            <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+          </select>
+
+          <label>Дедлайн:</label>
+          <input type="datetime-local" [(ngModel)]="newTask.deadline" />
+
+          <label>Минут до дедлайна:</label>
+          <input type="number" [(ngModel)]="newTask.minutesBeforeDeadline" min="1" />
+
+          <app-tag-list-in-add-task
+            [tags]="newTask.taskTags"
+            (tagsChanged)="onTagsChanged($event)">
+          </app-tag-list-in-add-task>
+
+          <button (click)="addTask(2)">Сохранить</button>
+        </div>
+
+          <app-task-item
+            *ngFor="let task of mediumPriorityTasks"
+            [task]="task"
+            [refreshTasks]="getAllTasksOfUser.bind(this)"
+            cdkDrag>
+          </app-task-item>
+
+      </div>
+
+      <div class="task-column"
+           cdkDropList
+           [cdkDropListData]="lowPriorityTasks"
+           (cdkDropListDropped)="drop($event, 'low')">
+        <div class="task-header">
+          <h3>Низкий приоритет</h3>
+          <button class="add-task-btn" (click)="toggleAddTaskForm('low')">+</button>
+        </div>
+
+        <div *ngIf="isAddingLow" class="add-task-form">
+          <input [(ngModel)]="newTask.title" placeholder="Название" />
+          <input [(ngModel)]="newTask.description" placeholder="Описание" />
+
+          <label>Категория:</label>
+          <select [(ngModel)]="newTask.category">
+            <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+          </select>
+
+          <label>Дедлайн:</label>
+          <input type="datetime-local" [(ngModel)]="newTask.deadline" />
+
+          <label>Минут до дедлайна:</label>
+          <input type="number" [(ngModel)]="newTask.minutesBeforeDeadline" min="1" />
+
+          <app-tag-list-in-add-task
+            [tags]="newTask.taskTags"
+            (tagsChanged)="onTagsChanged($event)">
+          </app-tag-list-in-add-task>
+
+          <button (click)="addTask(3)">Сохранить</button>
+        </div>
+
+          <app-task-item
+            *ngFor="let task of lowPriorityTasks"
+            [task]="task"
+            [refreshTasks]="getAllTasksOfUser.bind(this)"
+            cdkDrag>
+          </app-task-item>
+
+      </div>
+
+    </div>
+  </div>
+</div>

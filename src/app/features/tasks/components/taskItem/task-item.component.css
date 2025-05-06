@@ -1,0 +1,107 @@
+﻿.task-columns {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.task-column {
+  width: 320px;
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.task-card {
+  position: relative;
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 15px 0 15px 0;
+}
+
+.task-card:hover {
+  transform: scale(1.02);
+}
+
+.editable-field {
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background 0.2s;
+  justify-content: space-between;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  color: gray;
+  transition: color 0.3s ease-in-out;
+}
+
+.delete-icon:hover {
+  color: red;
+}
+
+.editing {
+  width: 86%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 12px;
+  transition: border 0.3s ease-in-out;
+}
+
+.editing-combo-box {
+  width: 92%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 12px;
+  transition: border 0.3s ease-in-out;
+}
+
+.editing:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.save-icon {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  color: green;
+  transition: color 0.3s ease-in-out;
+}
+
+.save-icon:hover {
+  color: darkgreen;
+}
+
+.task-card.edit-mode {
+  background: #f9f9f9;
+  border: 1px solid #007bff;
+}
+

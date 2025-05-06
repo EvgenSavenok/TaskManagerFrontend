@@ -1,0 +1,82 @@
+﻿.tags-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-btn {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 20px;
+  width: 12%;
+}
+
+.add-tag-form {
+  display: flex;
+  gap: 5px;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-item {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+  color: #000;
+  background: #ddd;
+  user-select: none;
+}
+
+.tag-item input {
+  border: none;
+  border-radius: 10px;
+  padding: 2px 5px;
+}
+
+.tag-name {
+  margin-right: 5px;
+}
+
+.delete-btn, .confirm-btn {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.delete-btn {
+  color: red;
+}
+
+.confirm-btn {
+  color: green;
+}
+
+.tags-panel-container {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-tag-container {
+  display: flex;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
