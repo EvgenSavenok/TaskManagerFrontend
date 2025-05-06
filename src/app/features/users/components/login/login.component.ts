@@ -25,11 +25,7 @@ export class LoginComponent implements OnInit {
     private errorHandlerService: ErrorHandlerService) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      if (params['error'] === 'sessionExpired') {
-        this.errorHandlerService.showError('Время сессии истекло. Пожалуйста, авторизуйтесь заново');
-      }
-    });
+
   }
 
   login() {
