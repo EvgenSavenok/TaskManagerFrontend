@@ -11,7 +11,7 @@ import {
   CdkDropListGroup,
   transferArrayItem
 } from '@angular/cdk/drag-drop';
-import {catchError, throwError} from 'rxjs';
+import {catchError, of, throwError} from 'rxjs';
 import {ErrorHandlerService} from '../../../../core/services/error-handler.service';
 import {AddTagItemComponent} from '../../../tags/components/tagsListInAddTask/add-tag-list.component';
 import {TagDto} from '../../../tags/models/tag.model';
@@ -82,7 +82,11 @@ export class TaskListComponent implements OnInit {
 
     this.tasksService.createTask(this.newTask).pipe(
       catchError(error => {
+        if (error.status === 200) {
+          return of(null);
+        }
         this.errorHandlerService.showError('Ошибка создния задачи');
+        console.log(error);
         return throwError(() => error);
       })
     ).subscribe(() => {
