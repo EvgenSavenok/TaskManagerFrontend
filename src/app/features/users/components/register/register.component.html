@@ -46,7 +46,7 @@
 
     <label for="role">Роль</label>
     <select id="role" formControlName="role">
-      <option *ngFor="let role of roles" [value]="role.value">{{ role.label }}</option>
+      <option *ngFor="let role of roles" [ngValue]="role.value">{{ role.label }}</option>
     </select>
 
     <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
