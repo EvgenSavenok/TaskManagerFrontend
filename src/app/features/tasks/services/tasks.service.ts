@@ -38,12 +38,30 @@ export class TasksService {
     return this.http.put<TaskDto>(`${this.baseUrl}/tasks/updateTask`, task, { headers });
   }
 
-  deleteTask(taskId: string): Observable<void> {
-    const accessToken = localStorage.getItem('accessToken');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${accessToken}`
-    });
+  // deleteTask(taskId: string): Observable<void> {
+  //   const accessToken = localStorage.getItem('accessToken');
+  //   const headers = new HttpHeaders({
+  //     'Authorization': `Bearer ${accessToken}`
+  //   });
+  //
+  //   return this.http.delete<void>(`${this.baseUrl}/tasks/deleteTask/${taskId}`, { headers });
+  // }
 
-    return this.http.delete<void>(`${this.baseUrl}/tasks/deleteTask/${taskId}`, { headers });
-  }
+    deleteTask(taskId: string): Observable<boolean> {
+      const accessToken = localStorage.getItem('accessToken');
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      });
+
+      const body = {
+        query: `
+        mutation {
+          deleteTask(taskId: "${taskId}")
+        }
+      `
+      };
+
+      return this.http.post<boolean>(`${this.baseUrl}/graphql`, body, { headers });
+    }
 }
